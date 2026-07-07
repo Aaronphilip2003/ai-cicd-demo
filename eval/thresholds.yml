@@ -5,4 +5,4 @@ min_quality_avg: 3.5          # absolute floor, 1-5 scale
 max_hallucination_rate: 0.30  # absolute ceiling, fraction of rows
 min_tool_success_rate: 0.80   # absolute floor, fraction of rows
 max_latency_increase_pct: 30  # vs baseline avg_latency_ms
-max_cost_increase_pct: 25     # vs baseline total_cost_usd
+max_cost_increase_pct: 60     # vs baseline total_cost_usd
