@@ -1,10 +1,10 @@
 {
   "summary": {
     "quality_avg": 4.7,
-    "hallucination_rate": 0.1,
+    "hallucination_rate": 0.0,
     "tool_success_rate": 1.0,
-    "avg_latency_ms": 3361.3,
-    "total_cost_usd": 0.00025919,
+    "avg_latency_ms": 2209.6,
+    "total_cost_usd": 0.00038778,
     "n_rows": 10
   },
   "rows": [
@@ -14,15 +14,15 @@
         "tool"
       ],
       "question": "What's the status of order #4521?",
-      "answer": "The status of your order #4521 is shipped. It is expected to arrive in 7 days via FedEx.",
+      "answer": "Your order #4521 has been shipped and is expected to arrive in 7 days via FedEx.",
       "tool_success": true,
       "quality": 5,
       "hallucinated": false,
       "judge_reason": "The answer matches the reference answer and is supported by the context/tool result.",
-      "prompt_tokens": 777,
-      "completion_tokens": 40,
-      "latency_ms": 347.0,
-      "cost_usd": 4.205e-05,
+      "prompt_tokens": 967,
+      "completion_tokens": 37,
+      "latency_ms": 405.7,
+      "cost_usd": 5.131e-05,
       "model": "llama-3.1-8b-instant"
     },
     {
@@ -31,15 +31,15 @@
         "tool"
       ],
       "question": "Can you check order 1002 for me?",
-      "answer": "Order 1002 has a status of \"delivered\" and was delivered 2 days ago via UPS.",
+      "answer": "Your order 1002 has been delivered. It was shipped via UPS and was expected to arrive 2 days after shipping.",
       "tool_success": true,
       "quality": 4,
-      "hallucinated": true,
-      "judge_reason": "The assistant incorrectly stated the order was delivered 2 days ago.",
-      "prompt_tokens": 776,
-      "completion_tokens": 39,
-      "latency_ms": 270.3,
-      "cost_usd": 4.192e-05,
+      "hallucinated": false,
+      "judge_reason": "The assistant's answer is mostly correct but lacks the phrase 'with an estimated arrival'.",
+      "prompt_tokens": 966,
+      "completion_tokens": 42,
+      "latency_ms": 284.9,
+      "cost_usd": 5.166e-05,
       "model": "llama-3.1-8b-instant"
     },
     {
@@ -48,15 +48,15 @@
         "tool"
       ],
       "question": "Where is my order, the ID is 77?",
-      "answer": "Your order with the ID 77 is currently in transit and has an estimated delivery date 1 day from now, as shipped by FedEx.",
+      "answer": "Your order with ID 77 has been shipped and is expected to arrive within 1 day. The carrier is FedEx.",
       "tool_success": true,
       "quality": 5,
       "hallucinated": false,
-      "judge_reason": "The assistant's answer matches the reference answer's content and detail.",
-      "prompt_tokens": 799,
-      "completion_tokens": 44,
-      "latency_ms": 391.7,
-      "cost_usd": 4.347e-05,
+      "judge_reason": "The answer matches the reference answer and is supported by the context/tool result.",
+      "prompt_tokens": 989,
+      "completion_tokens": 40,
+      "latency_ms": 264.7,
+      "cost_usd": 5.265e-05,
       "model": "llama-3.1-8b-instant"
     },
     {
@@ -65,15 +65,15 @@
         "tool"
       ],
       "question": "What's the ETA on order number 3?",
-      "answer": "The ETA for order number 3 is 4 days from now. The estimated delivery is via FedEx.",
+      "answer": "Based on the order lookup tool, the ETA for order number 3 is 4 days. The order is currently delayed and will be shipped via FedEx.",
       "tool_success": true,
       "quality": 5,
       "hallucinated": false,
-      "judge_reason": "The assistant's answer matches the reference answer.",
-      "prompt_tokens": 775,
-      "completion_tokens": 37,
-      "latency_ms": 309.9,
-      "cost_usd": 4.171e-05,
+      "judge_reason": "The assistant's answer matches the reference answer and is supported by the context/tool result.",
+      "prompt_tokens": 965,
+      "completion_tokens": 47,
+      "latency_ms": 357.5,
+      "cost_usd": 5.201e-05,
       "model": "llama-3.1-8b-instant"
     },
     {
@@ -82,15 +82,15 @@
         "rag"
       ],
       "question": "How do I reset my password?",
-      "answer": "To reset your password, go to Settings > Security > Reset Password, and you'll receive an email with a reset link that is valid for 24 hours.",
+      "answer": "I'd be happy to help you with that. To reset your password, go to Settings > Security > Reset Password. You'll receive an email with a reset link that is valid for 24 hours.",
       "tool_success": true,
       "quality": 5,
       "hallucinated": false,
       "judge_reason": "The assistant's answer matches the reference answer and context/tool result.",
-      "prompt_tokens": 229,
-      "completion_tokens": 33,
-      "latency_ms": 233.6,
-      "cost_usd": 1.409e-05,
+      "prompt_tokens": 541,
+      "completion_tokens": 42,
+      "latency_ms": 297.1,
+      "cost_usd": 3.041e-05,
       "model": "llama-3.1-8b-instant"
     },
     {
@@ -99,15 +99,15 @@
         "rag"
       ],
       "question": "Can I cancel an order after I place it?",
-      "answer": "Yes, you can cancel an order within 1 hour of placing it from the Orders page.",
+      "answer": "I understand you're concerned about cancelling an order after placing it. According to our policy, you can cancel an order within 1 hour of placement from the Orders page.",
       "tool_success": true,
       "quality": 4,
       "hallucinated": false,
       "judge_reason": "The assistant's answer is mostly correct but lacks the additional detail about returning the order after delivery.",
-      "prompt_tokens": 260,
-      "completion_tokens": 20,
-      "latency_ms": 9434.1,
-      "cost_usd": 1.46e-05,
+      "prompt_tokens": 572,
+      "completion_tokens": 35,
+      "latency_ms": 184.8,
+      "cost_usd": 3.14e-05,
       "model": "llama-3.1-8b-instant"
     },
     {
@@ -116,15 +116,15 @@
         "rag"
       ],
       "question": "How many days do I have to return something?",
-      "answer": "You have 30 days to return an item, starting from the delivery date.",
+      "answer": "You can return items within 30 days of delivery.",
       "tool_success": true,
       "quality": 4,
       "hallucinated": false,
       "judge_reason": "The answer is mostly correct but lacks the conditions for return.",
-      "prompt_tokens": 252,
-      "completion_tokens": 17,
-      "latency_ms": 5592.0,
-      "cost_usd": 1.396e-05,
+      "prompt_tokens": 564,
+      "completion_tokens": 12,
+      "latency_ms": 3188.8,
+      "cost_usd": 2.916e-05,
       "model": "llama-3.1-8b-instant"
     },
     {
@@ -133,15 +133,15 @@
         "rag"
       ],
       "question": "How long does standard shipping take?",
-      "answer": "Standard shipping takes 5-7 business days.",
+      "answer": "I understand you're concerned about the shipping time for your order. According to our shipping information, standard shipping takes 5-7 business days.",
       "tool_success": true,
       "quality": 5,
       "hallucinated": false,
-      "judge_reason": "The answer matches the reference answer exactly.",
-      "prompt_tokens": 250,
-      "completion_tokens": 11,
-      "latency_ms": 9495.8,
-      "cost_usd": 1.338e-05,
+      "judge_reason": "The assistant's answer matches the reference answer.",
+      "prompt_tokens": 562,
+      "completion_tokens": 30,
+      "latency_ms": 5367.7,
+      "cost_usd": 3.05e-05,
       "model": "llama-3.1-8b-instant"
     },
     {
@@ -150,15 +150,15 @@
         "rag"
       ],
       "question": "Can I return a gift card?",
-      "answer": "According to our policy, gift cards cannot be returned.",
+      "answer": "I understand you're wondering about returning a gift card. Unfortunately, gift cards are non-returnable items, so you won't be able to return it.",
       "tool_success": true,
       "quality": 5,
       "hallucinated": false,
-      "judge_reason": "The assistant's answer matches the context/tool result provided.",
-      "prompt_tokens": 236,
-      "completion_tokens": 12,
-      "latency_ms": 7400.9,
-      "cost_usd": 1.276e-05,
+      "judge_reason": "The assistant's answer accurately reflects the information provided in the context/tool result.",
+      "prompt_tokens": 548,
+      "completion_tokens": 32,
+      "latency_ms": 6284.7,
+      "cost_usd": 2.996e-05,
       "model": "llama-3.1-8b-instant"
     },
     {
@@ -167,15 +167,15 @@
         "refusal"
       ],
       "question": "Who is the CEO of this company?",
-      "answer": "I don't know and suggest contacting support.",
+      "answer": "I'm not able to find that information in our current context. If you're looking for details about our company leadership, I recommend reaching out to our support team for more information. They'll be happy to help.",
       "tool_success": true,
       "quality": 5,
       "hallucinated": false,
-      "judge_reason": "The assistant's answer matches the reference answer.",
-      "prompt_tokens": 409,
-      "completion_tokens": 10,
-      "latency_ms": 137.6,
-      "cost_usd": 2.125e-05,
+      "judge_reason": "The assistant's answer matches the reference answer in intent and content.",
+      "prompt_tokens": 504,
+      "completion_tokens": 44,
+      "latency_ms": 5460.5,
+      "cost_usd": 2.872e-05,
       "model": "llama-3.1-8b-instant"
     }
   ]
