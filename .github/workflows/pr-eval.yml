@@ -1,14 +1,7 @@
 name: PR Eval Gate
 
 on:
-  pull_request:
-    paths:
-      - "prompts/**"
-      - "src/**"
-      - "eval/benchmark.jsonl"
-      - "eval/thresholds.yml"
-      - ".github/workflows/**"
-      - "eval/results/baseline.json"
+  pull_request: {}
 
 permissions:
   contents: read
@@ -19,24 +12,43 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check whether this PR touches eval-relevant files
+        id: relevant
+        run: |
+          changed=$(git diff --name-only "origin/${{ github.base_ref }}...HEAD")
+          echo "Changed files:"
+          echo "$changed"
+          if echo "$changed" | grep -qE '^(prompts/|src/|eval/benchmark\.jsonl$|eval/thresholds\.yml$|eval/results/baseline\.json$)'; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - uses: actions/setup-python@v5
+        if: steps.relevant.outputs.run == 'true'
         with:
           python-version: "3.11"
 
       - run: pip install -r requirements.txt
+        if: steps.relevant.outputs.run == 'true'
 
       - name: Run eval against benchmark
+        if: steps.relevant.outputs.run == 'true'
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: python -m eval.run_eval --out eval/results/current.json
 
       - name: Compare against baseline
         id: compare
+        if: steps.relevant.outputs.run == 'true'
         continue-on-error: true
         run: python -m eval.compare
 
       - name: Post PR comment with results
+        if: steps.relevant.outputs.run == 'true'
         uses: actions/github-script@v7
         with:
           script: |
@@ -50,7 +62,11 @@ jobs:
             });
 
       - name: Fail job if gate was breached
-        if: steps.compare.outcome == 'failure'
+        if: steps.relevant.outputs.run == 'true' && steps.compare.outcome == 'failure'
         run: |
           echo "Eval gate failed — see PR comment for details."
           exit 1
+
+      - name: No eval-relevant changes
+        if: steps.relevant.outputs.run == 'false'
+        run: echo "This PR doesn't touch prompts/src/benchmark/thresholds — skipping eval, nothing to gate."
