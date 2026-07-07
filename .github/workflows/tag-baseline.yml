@@ -1,0 +1,25 @@
+name: Tag Baseline
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "eval/results/baseline.json"
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Tag prompt version
+        run: |
+          last=$(git tag --list 'prompt-v*' | sed 's/prompt-v//' | sort -n | tail -1)
+          next=$(( ${last:-0} + 1 ))
+          git tag "prompt-v${next}"
+          git push origin "prompt-v${next}"

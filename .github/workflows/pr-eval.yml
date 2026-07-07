@@ -8,6 +8,7 @@ on:
       - "eval/benchmark.jsonl"
       - "eval/thresholds.yml"
       - ".github/workflows/**"
+      - "eval/results/baseline.json"
 
 permissions:
   contents: read
