@@ -1,0 +1,182 @@
+{
+  "summary": {
+    "quality_avg": 4.7,
+    "hallucination_rate": 0.1,
+    "tool_success_rate": 1.0,
+    "avg_latency_ms": 3361.3,
+    "total_cost_usd": 0.00025919,
+    "n_rows": 10
+  },
+  "rows": [
+    {
+      "id": "q01",
+      "tags": [
+        "tool"
+      ],
+      "question": "What's the status of order #4521?",
+      "answer": "The status of your order #4521 is shipped. It is expected to arrive in 7 days via FedEx.",
+      "tool_success": true,
+      "quality": 5,
+      "hallucinated": false,
+      "judge_reason": "The answer matches the reference answer and is supported by the context/tool result.",
+      "prompt_tokens": 777,
+      "completion_tokens": 40,
+      "latency_ms": 347.0,
+      "cost_usd": 4.205e-05,
+      "model": "llama-3.1-8b-instant"
+    },
+    {
+      "id": "q02",
+      "tags": [
+        "tool"
+      ],
+      "question": "Can you check order 1002 for me?",
+      "answer": "Order 1002 has a status of \"delivered\" and was delivered 2 days ago via UPS.",
+      "tool_success": true,
+      "quality": 4,
+      "hallucinated": true,
+      "judge_reason": "The assistant incorrectly stated the order was delivered 2 days ago.",
+      "prompt_tokens": 776,
+      "completion_tokens": 39,
+      "latency_ms": 270.3,
+      "cost_usd": 4.192e-05,
+      "model": "llama-3.1-8b-instant"
+    },
+    {
+      "id": "q03",
+      "tags": [
+        "tool"
+      ],
+      "question": "Where is my order, the ID is 77?",
+      "answer": "Your order with the ID 77 is currently in transit and has an estimated delivery date 1 day from now, as shipped by FedEx.",
+      "tool_success": true,
+      "quality": 5,
+      "hallucinated": false,
+      "judge_reason": "The assistant's answer matches the reference answer's content and detail.",
+      "prompt_tokens": 799,
+      "completion_tokens": 44,
+      "latency_ms": 391.7,
+      "cost_usd": 4.347e-05,
+      "model": "llama-3.1-8b-instant"
+    },
+    {
+      "id": "q04",
+      "tags": [
+        "tool"
+      ],
+      "question": "What's the ETA on order number 3?",
+      "answer": "The ETA for order number 3 is 4 days from now. The estimated delivery is via FedEx.",
+      "tool_success": true,
+      "quality": 5,
+      "hallucinated": false,
+      "judge_reason": "The assistant's answer matches the reference answer.",
+      "prompt_tokens": 775,
+      "completion_tokens": 37,
+      "latency_ms": 309.9,
+      "cost_usd": 4.171e-05,
+      "model": "llama-3.1-8b-instant"
+    },
+    {
+      "id": "q05",
+      "tags": [
+        "rag"
+      ],
+      "question": "How do I reset my password?",
+      "answer": "To reset your password, go to Settings > Security > Reset Password, and you'll receive an email with a reset link that is valid for 24 hours.",
+      "tool_success": true,
+      "quality": 5,
+      "hallucinated": false,
+      "judge_reason": "The assistant's answer matches the reference answer and context/tool result.",
+      "prompt_tokens": 229,
+      "completion_tokens": 33,
+      "latency_ms": 233.6,
+      "cost_usd": 1.409e-05,
+      "model": "llama-3.1-8b-instant"
+    },
+    {
+      "id": "q06",
+      "tags": [
+        "rag"
+      ],
+      "question": "Can I cancel an order after I place it?",
+      "answer": "Yes, you can cancel an order within 1 hour of placing it from the Orders page.",
+      "tool_success": true,
+      "quality": 4,
+      "hallucinated": false,
+      "judge_reason": "The assistant's answer is mostly correct but lacks the additional detail about returning the order after delivery.",
+      "prompt_tokens": 260,
+      "completion_tokens": 20,
+      "latency_ms": 9434.1,
+      "cost_usd": 1.46e-05,
+      "model": "llama-3.1-8b-instant"
+    },
+    {
+      "id": "q07",
+      "tags": [
+        "rag"
+      ],
+      "question": "How many days do I have to return something?",
+      "answer": "You have 30 days to return an item, starting from the delivery date.",
+      "tool_success": true,
+      "quality": 4,
+      "hallucinated": false,
+      "judge_reason": "The answer is mostly correct but lacks the conditions for return.",
+      "prompt_tokens": 252,
+      "completion_tokens": 17,
+      "latency_ms": 5592.0,
+      "cost_usd": 1.396e-05,
+      "model": "llama-3.1-8b-instant"
+    },
+    {
+      "id": "q08",
+      "tags": [
+        "rag"
+      ],
+      "question": "How long does standard shipping take?",
+      "answer": "Standard shipping takes 5-7 business days.",
+      "tool_success": true,
+      "quality": 5,
+      "hallucinated": false,
+      "judge_reason": "The answer matches the reference answer exactly.",
+      "prompt_tokens": 250,
+      "completion_tokens": 11,
+      "latency_ms": 9495.8,
+      "cost_usd": 1.338e-05,
+      "model": "llama-3.1-8b-instant"
+    },
+    {
+      "id": "q09",
+      "tags": [
+        "rag"
+      ],
+      "question": "Can I return a gift card?",
+      "answer": "According to our policy, gift cards cannot be returned.",
+      "tool_success": true,
+      "quality": 5,
+      "hallucinated": false,
+      "judge_reason": "The assistant's answer matches the context/tool result provided.",
+      "prompt_tokens": 236,
+      "completion_tokens": 12,
+      "latency_ms": 7400.9,
+      "cost_usd": 1.276e-05,
+      "model": "llama-3.1-8b-instant"
+    },
+    {
+      "id": "q10",
+      "tags": [
+        "refusal"
+      ],
+      "question": "Who is the CEO of this company?",
+      "answer": "I don't know and suggest contacting support.",
+      "tool_success": true,
+      "quality": 5,
+      "hallucinated": false,
+      "judge_reason": "The assistant's answer matches the reference answer.",
+      "prompt_tokens": 409,
+      "completion_tokens": 10,
+      "latency_ms": 137.6,
+      "cost_usd": 2.125e-05,
+      "model": "llama-3.1-8b-instant"
+    }
+  ]
+}

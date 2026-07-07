@@ -1,0 +1,48 @@
+name: Promote Baseline
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "prompts/**"
+      - "src/**"
+      - "eval/benchmark.jsonl"
+      - "eval/thresholds.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install -r requirements.txt
+
+      - name: Run eval to produce new baseline
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: python -m eval.run_eval --out eval/results/baseline.json
+
+      - name: Commit new baseline
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add eval/results/baseline.json
+          git diff --cached --quiet && echo "No baseline change" && exit 0
+          git commit -m "chore: update eval baseline [skip ci]"
+          git push
+
+      - name: Tag prompt version
+        run: |
+          last=$(git tag --list 'prompt-v*' | sed 's/prompt-v//' | sort -n | tail -1)
+          next=$(( ${last:-0} + 1 ))
+          git tag "prompt-v${next}"
+          git push origin "prompt-v${next}"

@@ -1,0 +1,47 @@
+name: Nightly Drift Check
+
+on:
+  schedule:
+    - cron: "0 6 * * *" # 06:00 UTC daily
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  drift-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install -r requirements.txt
+
+      - name: Run eval against live model (no code changes)
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: python -m eval.run_eval --out eval/results/current.json
+
+      - name: Compare against committed baseline
+        id: compare
+        continue-on-error: true
+        run: python -m eval.compare
+
+      - name: Open issue on drift
+        if: steps.compare.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('eval/results/pr_comment.md', 'utf8');
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Nightly eval drift detected — ${new Date().toISOString().slice(0,10)}`,
+              body,
+              labels: ["eval-drift"],
+            });
