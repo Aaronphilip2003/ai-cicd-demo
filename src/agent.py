@@ -63,6 +63,7 @@ def run(question: str) -> dict:
             messages=messages,
             tools=TOOL_SCHEMAS,
             tool_choice="auto",
+            temperature=0,
         )
     except BadRequestError:
         # Model attempted a tool call with arguments that don't match the
@@ -70,7 +71,7 @@ def run(question: str) -> dict:
         # server-side instead of returning it. Fall back to a plain
         # completion with no tools, same as a real agent would recover from
         # a failed tool-call attempt instead of giving up entirely.
-        response = client.chat.completions.create(model=MODEL, messages=messages)
+        response = client.chat.completions.create(model=MODEL, messages=messages, temperature=0)
 
     prompt_tokens = response.usage.prompt_tokens
     completion_tokens = response.usage.completion_tokens
@@ -105,7 +106,7 @@ def run(question: str) -> dict:
             "content": json.dumps(tool_result),
         })
 
-        response = client.chat.completions.create(model=MODEL, messages=messages)
+        response = client.chat.completions.create(model=MODEL, messages=messages, temperature=0)
         prompt_tokens += response.usage.prompt_tokens
         completion_tokens += response.usage.completion_tokens
         msg = response.choices[0].message
